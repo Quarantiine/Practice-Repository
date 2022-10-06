@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap");
+* {
+  font-size: 17px;
+  font-family: "Comfortaa", cursive;
+  font-weight: 300;
+  transition: 1s cubic-bezier(0.18, 0.89, 0.34, 1.28);
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
