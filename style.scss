@@ -36,7 +36,7 @@ body {
 		width: 200px;
 		height: 100%;
 		box-shadow: 0px 0px 10px rgba(#000, .5);
-		z-index: 2;
+		z-index: 5;
 		display: flex;
 		flex-flow: column;
 		justify-content: start;
@@ -74,8 +74,9 @@ body {
 				cursor: pointer;
 				position: fixed;
 				left: 200px;
-				top: 30px;
+				top: 25px;
 				user-select: none;
+				z-index: 5;
 			} span:hover {
 				background-color: #787e96;
 			}
@@ -393,7 +394,7 @@ body {
 			justify-content: center;
 			align-items: flex-start;
 			padding: 20px;
-			margin-top: 40px;
+			margin-top: 10px;
 			gap: 10px;
 
 			img {
@@ -413,6 +414,215 @@ body {
 			}
 		}
 
+		%side-navbar-activities-pop-up-cl-template {
+			position: fixed;
+			left: 0px;
+			width: 0%;
+			overflow-y: hidden;
+			opacity: 0;
+			transition: 0.6s;
+		}
+		.side-navbar-activities-pop-up {
+			@extend %side-navbar-activities-pop-up-cl-template;
+			top: 0px;
+			height: 100%;
+			background-color: #131417;
+			overflow: hidden;
+			// background-color: red;
+			z-index: 2;
+			padding-bottom: 30px;
+
+			.top-activity-link-section {
+				padding: 70px 30px 30px 30px;
+				display: grid;
+				grid-template-columns: auto auto;
+				justify-content: space-between;
+				align-items: center;
+				width: 400px;
+
+				%act-links-template {
+					display: flex;
+					flex-flow: row;
+					justify-content: center;
+					align-items: center;
+					cursor: pointer;
+				}
+
+				.act-link-1 {
+					@extend %act-links-template;
+
+					span {
+						font-size: 17px;
+						font-weight: 900;
+						color: #aaaebc;
+					}
+
+					p {
+						font-size: 15px;
+						font-weight: 700;
+					}
+				} .act-link-1:hover {
+
+					span {
+						color: white;
+					}
+				}
+
+				.act-link-2 {
+					@extend %act-links-template;
+					user-select: none;
+
+					p {
+						color: #76daff;
+						font-size: 15px;
+					}
+					
+					span {
+						transform: rotate(90deg);
+						color: #76daff;
+						font-size: 20px;
+					}
+
+				} .act-link-2:hover {
+					
+					p {
+						color: white;
+					}
+
+					span {
+						color: white;
+					}
+				}
+			}
+
+			.content-activity-container {
+				display: grid;
+				grid-template-columns: auto;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				gap: 20px;
+
+				.top-border-green {
+					border-top: 3px solid #47cf73;
+				}
+
+				.content-activity-box {
+					display: grid;
+					grid-template-columns: auto;
+					justify-content: center;
+					align-items: center;
+					width: 325px;
+					border-radius: 5px;
+					padding: 10px 0px;
+					gap: 10px;
+					margin: auto;
+					background-color: #2c303a;
+
+					.act-box-img-section {
+						display: flex;
+						flex-flow: row;
+						justify-content: space-between;
+						align-items: center;
+						width: 300px;
+
+						.abis-img-1 {
+							cursor: pointer;
+							width: 50px;
+							border-radius: 5px;
+						}
+
+						.abis-img-2 {
+							cursor: pointer;
+							width: 100px;
+							border-radius: 5px;
+						}
+					}
+
+					.text-section {
+						display: flex;
+						flex-flow: column;
+						justify-content: center;
+						align-items: flex-start;
+						gap: 2px;
+
+						.name-txt {
+							color: #c7c9d3;
+							font-size: 17px;
+
+							span {
+								color: white;
+								cursor: pointer;
+							}
+						}
+
+						.title-txt {
+							font-weight: 600;
+							color: #0ebeff;
+							font-size: 16px;
+							cursor: pointer;
+						} .title-txt:hover {
+							color: #76daff;
+						}
+					}
+
+					.time-txt {
+						color: #b7bbc8;
+						font-size: 12px;
+					}
+				}
+			}
+
+			.bottom-activity-link-section {
+				display: flex;
+				flex-flow: row;
+				justify-content: start;
+				align-items: center;
+				width: fit-content;
+				padding: 20px 30px 0px 30px;
+				cursor: pointer;
+				gap: 4px;
+				user-select: none;
+
+				p {
+					color: #0ebeff;
+					font-size: 15px;
+					font-weight: 600;
+				} 
+				
+				span {
+					transform: rotate(90deg);
+					color: #0ebeff;
+					font-size: 20px;
+					font-weight: 600;
+				}
+			} .bottom-activity-link-section:hover {
+				 
+				p {
+					color: #76daff;
+				}
+
+				span {
+					color: #76daff;
+				}
+			}
+
+		} .side-navbar-activities-pop-up::-webkit-scrollbar {
+			width: 10px;
+		} .side-navbar-activities-pop-up::-webkit-scrollbar-thumb {
+			background-color: #717790;
+		} .side-navbar-activities-pop-up::-webkit-scrollbar-track {
+			background-color: rgb(206, 206, 206);
+		}
+
+		.side-navbar-activities-pop-up-cl {
+			position: fixed;
+			left: 200px;
+			width: 400px;
+			overflow-y: scroll;
+			opacity: 1;
+		}
+
 	} .side-navbar::-webkit-scrollbar {
 		width: 5px;
 	} .side-navbar::-webkit-scrollbar-thumb {
@@ -420,11 +630,90 @@ body {
 	} .side-navbar::-webkit-scrollbar-track {
 		background-color: #1e1f26;
 	}
-
 	.side-navbar-class-list {
 		width: 10px;
 		overflow: hidden;
 		border-right: 10px solid #4a4e5a;
+	}
+
+	.pinned-items-pop-up-container {
+		position: fixed;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(#000, .7);
+		opacity: 0;
+		z-index: -1;
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+		transition: 0.2s;
+
+		.pipuc-bg {
+			background-color: transparent;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: 5;
+			// cursor: pointer;
+		}
+
+		.pipuc-content {
+			width: 960px;
+			min-height: 400px;
+			background-color: #131417;
+			margin: auto;
+			z-index: 6;
+			border-radius: 7px;
+			border: 3px solid #252830;
+
+			.top-links-section {
+				display: flex;
+				flex-flow: row;
+				justify-content: space-between;
+				align-items: center;
+				color: white;
+				padding: 20px 15px 15px 15px;
+
+				p {
+					padding-bottom: 10px;
+					border-bottom: 2px solid #47cf73;
+				}
+
+				.pipuc-close-btn {
+					cursor: pointer;
+					background-color: #2c303a;
+					padding: 3px 5px;
+					border-radius: 3px;
+					font-weight: 900;
+					font-size: 17px;
+					transform: translateY(-5px);
+				}
+			}
+
+			.display-items-section {
+
+				.display-items {
+
+					p {
+
+					}
+
+					span {
+
+					}
+					
+					.display-item-icons-cl {
+
+					}
+				}
+			}
+		}
+	}
+	.pinned-items-pop-up-container-cl {
+		opacity: 1;
+		z-index: 6;
 	}
 
 	.main-body-content {
@@ -435,6 +724,7 @@ body {
 		top: 0px;
 		right: 0px;
 		z-index: 1;
+		padding: 50px;
 	}
 	.main-body-content-cl {
 		width: 99.3%;
