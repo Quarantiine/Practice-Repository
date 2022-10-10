@@ -23,7 +23,10 @@ var sideNavbarVar = {
   pinnedItemsPopUpContainer: document.querySelector('.pinned-items-pop-up-container'),
   pipucBg: document.querySelector('.pipuc-bg'),
   pinnedItemsBtn: document.querySelector('.pinned-items-btn'),
-  pipucCloseBtn: document.querySelector('.pipuc-close-btn')
+  pipucCloseBtn: document.querySelector('.pipuc-close-btn'),
+  htsLogo: document.querySelector('.hts-logo'),
+  mbcmDropDown: document.querySelector('.mbcm-drop-down'),
+  mbcmPinnedItems: document.querySelector('.mbcm-pinned-items')
 };
 var sideNavbar = sideNavbarVar.sideNavbar,
     closeSideBar = sideNavbarVar.closeSideBar,
@@ -41,7 +44,10 @@ var sideNavbar = sideNavbarVar.sideNavbar,
     pinnedItemsPopUpContainer = sideNavbarVar.pinnedItemsPopUpContainer,
     pipucBg = sideNavbarVar.pipucBg,
     pinnedItemsBtn = sideNavbarVar.pinnedItemsBtn,
-    pipucCloseBtn = sideNavbarVar.pipucCloseBtn;
+    pipucCloseBtn = sideNavbarVar.pipucCloseBtn,
+    htsLogo = sideNavbarVar.htsLogo,
+    mbcmDropDown = sideNavbarVar.mbcmDropDown,
+    mbcmPinnedItems = sideNavbarVar.mbcmPinnedItems;
 var mainBodyContentVar = {
   mainBodyContent: document.querySelector('.main-body-content')
 };
@@ -119,12 +125,82 @@ function () {
     value: function PinnedItemsPopUpContainerMethod() {
       pipucBg.addEventListener('click', function () {
         pinnedItemsPopUpContainer.classList.remove('pinned-items-pop-up-container-cl');
+        $(mbcmPinnedItems).css({
+          'border-bottom': '3px solid transparent'
+        });
       });
       pinnedItemsBtn.addEventListener('click', function () {
         pinnedItemsPopUpContainer.classList.add('pinned-items-pop-up-container-cl');
+        $(mbcmPinnedItems).css({
+          'border-bottom': '3px solid #12d112'
+        });
       });
       pipucCloseBtn.addEventListener('click', function () {
         pinnedItemsPopUpContainer.classList.remove('pinned-items-pop-up-container-cl');
+        $(mbcmPinnedItems).css({
+          'border-bottom': '3px solid transparent'
+        });
+      });
+      mbcmPinnedItems.addEventListener('click', function () {
+        pinnedItemsPopUpContainer.classList.add('pinned-items-pop-up-container-cl');
+        $(mbcmPinnedItems).css({
+          'border-bottom': '3px solid #12d112'
+        });
+      });
+    }
+  }, {
+    key: "SideNavbarReponsiveness",
+    value: function SideNavbarReponsiveness() {
+      setInterval(function () {
+        var sideNavbarActivitiesPopUpCl = document.querySelector('.side-navbar-activities-pop-up-cl');
+        var topActivityLinkSection = document.querySelector('.top-activity-link-section');
+        var contentActivityBox = document.querySelectorAll('.content-activity-box');
+        var actBoxImgSection = document.querySelectorAll('.act-box-img-section');
+
+        if (window.innerWidth <= 1300) {
+          sideNavbar.classList.add('side-navbar-content-class-list');
+          htsLogo.classList.add('main-body-logo-n-drop-down-cl');
+          mbcmDropDown.classList.add('main-body-logo-n-drop-down-cl');
+          $(sideNavbarActivitiesPopUp).css({
+            'left': '0px'
+          });
+          $(sideNavbarActivitiesPopUpCl).css({
+            'width': '280px'
+          });
+          $(topActivityLinkSection).css({
+            'width': '280px'
+          });
+          $(contentActivityBox).css({
+            'width': '220px',
+            'padding': '10px'
+          });
+          $(actBoxImgSection).css({
+            'width': '200px'
+          });
+        } else {
+          sideNavbar.classList.remove('side-navbar-content-class-list');
+          htsLogo.classList.remove('main-body-logo-n-drop-down-cl');
+          mbcmDropDown.classList.remove('main-body-logo-n-drop-down-cl');
+          sideNavbar.classList.remove('side-navbar-content-toggle-class-list');
+          $(sideNavbarActivitiesPopUp).css({
+            'left': '200px'
+          });
+          $(sideNavbarActivitiesPopUpCl).css({
+            'width': '400px'
+          });
+          $(topActivityLinkSection).css({
+            'width': '400px'
+          });
+          $(contentActivityBox).css({
+            'width': '325px'
+          });
+          $(actBoxImgSection).css({
+            'width': '300px'
+          });
+        }
+      }, 100);
+      mbcmDropDown.addEventListener('click', function () {
+        sideNavbar.classList.toggle('side-navbar-content-toggle-class-list');
       });
     }
   }]);
@@ -142,6 +218,7 @@ var SNBClassMethodManager = function SNBClassMethodManager() {
   SNB.SideNavbarActivitiesPopUpMethod();
   SNB.ActLinkBtnMethod();
   SNB.PinnedItemsPopUpContainerMethod();
+  SNB.SideNavbarReponsiveness();
 };
 
 SNBClassMethodManager();
