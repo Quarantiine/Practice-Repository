@@ -1380,6 +1380,7 @@ body {
 				margin: 30px auto auto auto;
 
 				.list-content {
+					user-select: none;
 					display: grid;
 					grid-template-columns: 36% 17% 17% 20% 10%;
 					justify-content: center;
@@ -1537,6 +1538,7 @@ body {
 				}
 
 				.grid-content {
+					user-select: none;
 					width: 260px;
 					height: 230px;
 					margin-right: auto;
@@ -1981,6 +1983,10 @@ body {
 				border-radius: 4px;
 				cursor: pointer;
 			}
+		}
+
+		x {
+			
 		}
 	}
 	.main-body-content-cl {

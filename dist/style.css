@@ -1185,6 +1185,7 @@ body {
   margin: 30px auto auto auto;
 }
 .body-container .pinned-items-pop-up-container .pipuc-content .bottom-pinned-content .list-content {
+  user-select: none;
   display: grid;
   grid-template-columns: 36% 17% 17% 20% 10%;
   justify-content: center;
@@ -1287,6 +1288,7 @@ body {
   display: grid;
 }
 .body-container .pinned-items-pop-up-container .pipuc-content .bottom-pinned-content .grid-content {
+  user-select: none;
   width: 260px;
   height: 230px;
   margin-right: auto;
