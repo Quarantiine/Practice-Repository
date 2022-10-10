@@ -18,7 +18,11 @@ const sideNavbarVar = {
     pipucCloseBtn: document.querySelector('.pipuc-close-btn'),
     htsLogo: document.querySelector('.hts-logo'),
     mbcmDropDown: document.querySelector('.mbcm-drop-down'),
-    mbcmPinnedItems: document.querySelector('.mbcm-pinned-items')
+    mbcmPinnedItems: document.querySelector('.mbcm-pinned-items'),
+    displayItemsGrid: document.querySelector('.display-items-grid'),
+    displayItemsList: document.querySelector('.display-items-list'),  
+    listContent: document.querySelector('.list-content'),
+    gridContent: document.querySelector('.grid-content')
 };
 const {
     sideNavbar, closeSideBar, sideBarSec1, csBoxExpend,
@@ -27,7 +31,7 @@ const {
     sideNavbarActivitiesPopUp, activityBtn, actLink1,
     pinnedItemsPopUpContainer, pipucBg, pinnedItemsBtn,
     pipucCloseBtn, htsLogo, mbcmDropDown, mbcmPinnedItems,
-
+    listContent, gridContent, displayItemsGrid, displayItemsList
 } = sideNavbarVar;
 
 const mainBodyContentVar = {
@@ -195,6 +199,36 @@ class SideNavigationBar {
             sideNavbar.classList.toggle('side-navbar-content-toggle-class-list');
         });
     }
+
+    ChangingDisplays() {
+        displayItemsGrid.addEventListener('click', ()=> {
+            listContent.classList.add('list-content-cl-disable');
+            listContent.classList.remove('list-content-cl-enable');
+
+            gridContent.classList.add('grid-content-cl-enable');
+            gridContent.classList.remove('list-content-cl-disable');
+
+            displayItemsGrid.classList.add('display-item-icons-cl-enable');
+            displayItemsGrid.classList.remove('display-item-icons-cl-disable');
+
+            displayItemsList.classList.remove('display-item-icons-cl-enable');
+            displayItemsList.classList.add('display-item-icons-cl-disable');
+        });
+
+        displayItemsList.addEventListener('click', ()=> {
+            listContent.classList.remove('list-content-cl-disable');
+            listContent.classList.add('list-content-cl-enable');
+
+            gridContent.classList.remove('grid-content-cl-enable');
+            gridContent.classList.add('list-content-cl-disable');
+
+            displayItemsGrid.classList.remove('display-item-icons-cl-enable');
+            displayItemsGrid.classList.add('display-item-icons-cl-disable');
+
+            displayItemsList.classList.add('display-item-icons-cl-enable');
+            displayItemsList.classList.remove('display-item-icons-cl-disable');
+        });
+    }
 }
 const SNB = new SideNavigationBar();
 const SNBClassMethodManager = ()=> {
@@ -206,5 +240,6 @@ const SNBClassMethodManager = ()=> {
     SNB.ActLinkBtnMethod();
     SNB.PinnedItemsPopUpContainerMethod();
     SNB.SideNavbarReponsiveness();
+    SNB.ChangingDisplays();
 };
 SNBClassMethodManager();

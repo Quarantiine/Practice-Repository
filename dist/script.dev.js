@@ -26,7 +26,11 @@ var sideNavbarVar = {
   pipucCloseBtn: document.querySelector('.pipuc-close-btn'),
   htsLogo: document.querySelector('.hts-logo'),
   mbcmDropDown: document.querySelector('.mbcm-drop-down'),
-  mbcmPinnedItems: document.querySelector('.mbcm-pinned-items')
+  mbcmPinnedItems: document.querySelector('.mbcm-pinned-items'),
+  displayItemsGrid: document.querySelector('.display-items-grid'),
+  displayItemsList: document.querySelector('.display-items-list'),
+  listContent: document.querySelector('.list-content'),
+  gridContent: document.querySelector('.grid-content')
 };
 var sideNavbar = sideNavbarVar.sideNavbar,
     closeSideBar = sideNavbarVar.closeSideBar,
@@ -47,7 +51,11 @@ var sideNavbar = sideNavbarVar.sideNavbar,
     pipucCloseBtn = sideNavbarVar.pipucCloseBtn,
     htsLogo = sideNavbarVar.htsLogo,
     mbcmDropDown = sideNavbarVar.mbcmDropDown,
-    mbcmPinnedItems = sideNavbarVar.mbcmPinnedItems;
+    mbcmPinnedItems = sideNavbarVar.mbcmPinnedItems,
+    listContent = sideNavbarVar.listContent,
+    gridContent = sideNavbarVar.gridContent,
+    displayItemsGrid = sideNavbarVar.displayItemsGrid,
+    displayItemsList = sideNavbarVar.displayItemsList;
 var mainBodyContentVar = {
   mainBodyContent: document.querySelector('.main-body-content')
 };
@@ -203,6 +211,30 @@ function () {
         sideNavbar.classList.toggle('side-navbar-content-toggle-class-list');
       });
     }
+  }, {
+    key: "ChangingDisplays",
+    value: function ChangingDisplays() {
+      displayItemsGrid.addEventListener('click', function () {
+        listContent.classList.add('list-content-cl-disable');
+        listContent.classList.remove('list-content-cl-enable');
+        gridContent.classList.add('grid-content-cl-enable');
+        gridContent.classList.remove('list-content-cl-disable');
+        displayItemsGrid.classList.add('display-item-icons-cl-enable');
+        displayItemsGrid.classList.remove('display-item-icons-cl-disable');
+        displayItemsList.classList.remove('display-item-icons-cl-enable');
+        displayItemsList.classList.add('display-item-icons-cl-disable');
+      });
+      displayItemsList.addEventListener('click', function () {
+        listContent.classList.remove('list-content-cl-disable');
+        listContent.classList.add('list-content-cl-enable');
+        gridContent.classList.remove('grid-content-cl-enable');
+        gridContent.classList.add('list-content-cl-disable');
+        displayItemsGrid.classList.remove('display-item-icons-cl-enable');
+        displayItemsGrid.classList.add('display-item-icons-cl-disable');
+        displayItemsList.classList.add('display-item-icons-cl-enable');
+        displayItemsList.classList.remove('display-item-icons-cl-disable');
+      });
+    }
   }]);
 
   return SideNavigationBar;
@@ -219,6 +251,7 @@ var SNBClassMethodManager = function SNBClassMethodManager() {
   SNB.ActLinkBtnMethod();
   SNB.PinnedItemsPopUpContainerMethod();
   SNB.SideNavbarReponsiveness();
+  SNB.ChangingDisplays();
 };
 
 SNBClassMethodManager();
