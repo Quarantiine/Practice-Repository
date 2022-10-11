@@ -37,6 +37,7 @@ body {
   border-right: none;
   overflow: hidden;
   overflow-y: scroll;
+  user-select: none;
 }
 .body-container .side-navbar .side-bar-header {
   display: flex;
@@ -1078,6 +1079,7 @@ body {
   border-radius: 7px;
   border: 3px solid #252830;
   padding-bottom: 20px;
+  user-select: none;
 }
 .body-container .pinned-items-pop-up-container .pipuc-content .top-links-section {
   display: flex;
@@ -1595,6 +1597,7 @@ body {
   align-items: center;
   width: 95%;
   gap: 10px;
+  user-select: none;
 }
 .body-container .main-body-content .header-top-section .hts-logo {
   display: none;
