@@ -1985,8 +1985,76 @@ body {
 			}
 		}
 
-		x {
+		.search-bar-links-container {
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
+			align-items: flex-start;
+			width: 90%;
+			height: auto;
+			padding: 10px 15px;
+			user-select: none;
 			
+			.search-bar-links {
+				display: grid;
+				grid-template-columns: auto auto auto auto;
+				justify-content: start;
+				align-items: center;
+				gap: 10px;
+				opacity: 0;
+
+				.sbl-container {
+					display: flex;
+					flex-flow: row;
+					justify-content: center;
+					align-items: center;
+					gap: 6px;
+					padding: 4px 8px;
+					background-color: #1e1f26;
+					$col: #717790;
+					cursor: default;
+					border-radius: 2px;
+
+					span {
+						width: auto;
+						color: $col;
+						font-weight: 900;
+					}
+
+					p {
+						font-size: 16px;
+						color: $col;
+					}
+				} .sbl-container:hover {
+					background-color: #5a5f73;
+					$col: #ffffff;
+
+					span {
+						color: $col;
+					}
+
+					p {
+						color: $col;
+					}
+				}
+			} 
+			@media screen and (max-width: 600px) {
+				
+				.search-bar-links {
+					grid-template-columns: auto auto;
+				}
+			}
+
+			@media screen and (max-width: 400px) {
+				
+				.search-bar-links {
+					grid-template-columns: auto;
+				}
+			}
+
+			.search-bar-links-cl {
+				opacity: 1;
+			}
 		}
 	}
 	.main-body-content-cl {

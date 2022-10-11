@@ -6,6 +6,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+// ========== SIDE NAVIGATION BAR VARIABLES ===========
 var sideNavbarVar = {
   sideNavbar: document.querySelector('.side-navbar'),
   closeSideBar: document.querySelector('.close-side-bar'),
@@ -55,11 +56,21 @@ var sideNavbar = sideNavbarVar.sideNavbar,
     listContent = sideNavbarVar.listContent,
     gridContent = sideNavbarVar.gridContent,
     displayItemsGrid = sideNavbarVar.displayItemsGrid,
-    displayItemsList = sideNavbarVar.displayItemsList;
+    displayItemsList = sideNavbarVar.displayItemsList; // ========== MAIN BODY CONTENT VARIABLES ===========
+
 var mainBodyContentVar = {
-  mainBodyContent: document.querySelector('.main-body-content')
+  mainBodyContent: document.querySelector('.main-body-content'),
+  searchBarLinksContainer: document.querySelector('.search-bar-links-container'),
+  searchBarLinks: document.querySelector('.search-bar-links'),
+  searchBar: document.querySelector('.search-bar'),
+  sblContainer: document.querySelectorAll('.sbl-container')
 };
-var mainBodyContent = mainBodyContentVar.mainBodyContent;
+var mainBodyContent = mainBodyContentVar.mainBodyContent,
+    searchBarLinks = mainBodyContentVar.searchBarLinks,
+    searchBar = mainBodyContentVar.searchBar,
+    sblContainer = mainBodyContentVar.sblContainer,
+    searchBarLinksContainer = mainBodyContentVar.searchBarLinksContainer; // ==---
+// ========== Side Navigation Bar Section ===========||
 
 var SideNavigationBar =
 /*#__PURE__*/
@@ -254,4 +265,41 @@ var SNBClassMethodManager = function SNBClassMethodManager() {
   SNB.ChangingDisplays();
 };
 
-SNBClassMethodManager();
+SNBClassMethodManager(); // ==---
+// ========== Main Body Content Section ===========||
+
+var MainBodyContent =
+/*#__PURE__*/
+function () {
+  function MainBodyContent() {
+    _classCallCheck(this, MainBodyContent);
+  }
+
+  _createClass(MainBodyContent, [{
+    key: "SearchBarLinksMethod",
+    value: function SearchBarLinksMethod() {
+      searchBar.addEventListener('click', function () {
+        searchBarLinks.classList.add('search-bar-links-cl');
+        $(sblContainer).css({
+          'cursor': 'pointer'
+        });
+      });
+      searchBarLinksContainer.addEventListener('mouseleave', function () {
+        searchBarLinks.classList.remove('search-bar-links-cl');
+        $(sblContainer).css({
+          'cursor': 'default'
+        });
+      });
+    }
+  }]);
+
+  return MainBodyContent;
+}();
+
+var MBC = new MainBodyContent();
+
+var MBCClassMethodManager = function MBCClassMethodManager() {
+  MBC.SearchBarLinksMethod();
+};
+
+MBCClassMethodManager();

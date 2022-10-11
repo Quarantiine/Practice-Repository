@@ -1,3 +1,4 @@
+// ========== SIDE NAVIGATION BAR VARIABLES ===========
 const sideNavbarVar = {
     sideNavbar: document.querySelector('.side-navbar'),
     closeSideBar: document.querySelector('.close-side-bar'),
@@ -34,13 +35,23 @@ const {
     listContent, gridContent, displayItemsGrid, displayItemsList
 } = sideNavbarVar;
 
+// ========== MAIN BODY CONTENT VARIABLES ===========
 const mainBodyContentVar = {
-    mainBodyContent: document.querySelector('.main-body-content')
+    mainBodyContent: document.querySelector('.main-body-content'),
+    searchBarLinksContainer: document.querySelector('.search-bar-links-container'),
+    searchBarLinks: document.querySelector('.search-bar-links'),
+    searchBar: document.querySelector('.search-bar'),
+    sblContainer: document.querySelectorAll('.sbl-container')
+    
 };
 const {
-    mainBodyContent
+    mainBodyContent, searchBarLinks, searchBar, sblContainer,
+    searchBarLinksContainer
 } = mainBodyContentVar;
 
+
+// ==---
+// ========== Side Navigation Bar Section ===========||
 class SideNavigationBar {
     constructor(){}
 
@@ -243,3 +254,31 @@ const SNBClassMethodManager = ()=> {
     SNB.ChangingDisplays();
 };
 SNBClassMethodManager();
+
+
+// ==---
+// ========== Main Body Content Section ===========||
+class MainBodyContent {
+    constructor(){}
+
+    SearchBarLinksMethod() {
+        searchBar.addEventListener('click', ()=> {
+            searchBarLinks.classList.add('search-bar-links-cl');
+            $(sblContainer).css({
+                'cursor': 'pointer'
+            }); 
+        });
+
+        searchBarLinksContainer.addEventListener('mouseleave', ()=> {
+            searchBarLinks.classList.remove('search-bar-links-cl');
+            $(sblContainer).css({
+                'cursor': 'default'
+            }); 
+        });
+    }
+}
+const MBC = new MainBodyContent();
+const MBCClassMethodManager = ()=> {
+    MBC.SearchBarLinksMethod();
+};
+MBCClassMethodManager();

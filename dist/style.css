@@ -1657,6 +1657,66 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
+.body-container .main-body-content .search-bar-links-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 90%;
+  height: auto;
+  padding: 10px 15px;
+  user-select: none;
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links .sbl-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: #1e1f26;
+  cursor: default;
+  border-radius: 2px;
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links .sbl-container span {
+  width: auto;
+  color: #717790;
+  font-weight: 900;
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links .sbl-container p {
+  font-size: 16px;
+  color: #717790;
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links .sbl-container:hover {
+  background-color: #5a5f73;
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links .sbl-container:hover span {
+  color: #ffffff;
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links .sbl-container:hover p {
+  color: #ffffff;
+}
+@media screen and (max-width: 600px) {
+  .body-container .main-body-content .search-bar-links-container .search-bar-links {
+    grid-template-columns: auto auto;
+  }
+}
+@media screen and (max-width: 400px) {
+  .body-container .main-body-content .search-bar-links-container .search-bar-links {
+    grid-template-columns: auto;
+  }
+}
+.body-container .main-body-content .search-bar-links-container .search-bar-links-cl {
+  opacity: 1;
+}
 .body-container .main-body-content-cl {
   width: 99.3%;
 }
