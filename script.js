@@ -41,12 +41,16 @@ const mainBodyContentVar = {
     searchBarLinksContainer: document.querySelector('.search-bar-links-container'),
     searchBarLinks: document.querySelector('.search-bar-links'),
     searchBar: document.querySelector('.search-bar'),
-    sblContainer: document.querySelectorAll('.sbl-container')
+    sblContainer: document.querySelectorAll('.sbl-container'),
+    linkSectionLinks: document.querySelectorAll('.link-section p'),
+    mcsRecentContentContainer: document.querySelectorAll('.mcs-recent-content-container p'),
+    switchBtnContainer: document.querySelector('.switch-btn-container')
     
 };
 const {
     mainBodyContent, searchBarLinks, searchBar, sblContainer,
-    searchBarLinksContainer
+    searchBarLinksContainer, linkSectionLinks, mcsRecentContentContainer,
+    switchBtnContainer
 } = mainBodyContentVar;
 
 
@@ -261,24 +265,97 @@ SNBClassMethodManager();
 class MainBodyContent {
     constructor(){}
 
+    MainBodyContentCheckScrollMethod() {
+        if (mainBodyContent.scrollHeight > 929) {
+            mainBodyContent.classList.add('main-body-content-cl-2');
+        } else {
+            mainBodyContent.classList.remove('main-body-content-cl-2');
+        }
+    }
+
     SearchBarLinksMethod() {
         searchBar.addEventListener('click', ()=> {
             searchBarLinks.classList.add('search-bar-links-cl');
+            $(searchBarLinksContainer).css({
+                'display': 'flex',
+                'height': '50px',
+                'z-index': '5',
+            });
             $(sblContainer).css({
-                'cursor': 'pointer'
+                'cursor': 'pointer',
             }); 
         });
 
         searchBarLinksContainer.addEventListener('mouseleave', ()=> {
             searchBarLinks.classList.remove('search-bar-links-cl');
+            $(searchBarLinksContainer).css({
+                'height': '0%',
+                'z-index': '-1'
+            });
             $(sblContainer).css({
-                'cursor': 'default'
-            }); 
+                'cursor': 'default',
+            });
+            setTimeout(()=> {
+                $(searchBarLinksContainer).css('display', 'none');
+            }, 200);
+        });
+    }
+
+    MainContentTopLinksMethod() {
+        linkSectionLinks[0].addEventListener('click', (e)=> {
+            linkSectionLinks[0].classList.add('mcs-links-cl');
+            linkSectionLinks[1].classList.remove('mcs-links-cl');
+            linkSectionLinks[2].classList.remove('mcs-links-cl');
+        });
+
+        linkSectionLinks[1].addEventListener('click', (e)=> {
+            linkSectionLinks[0].classList.remove('mcs-links-cl');
+            linkSectionLinks[1].classList.add('mcs-links-cl');
+            linkSectionLinks[2].classList.remove('mcs-links-cl');
+        });
+
+        linkSectionLinks[2].addEventListener('click', (e)=> {
+            linkSectionLinks[0].classList.remove('mcs-links-cl');
+            linkSectionLinks[1].classList.remove('mcs-links-cl');
+            linkSectionLinks[2].classList.add('mcs-links-cl');
+        });
+    }
+
+    MainContentBottomLinksMethod() {
+        mcsRecentContentContainer[0].addEventListener('click', ()=> {
+            mcsRecentContentContainer[0].classList.add('switch-btn-text');
+            mcsRecentContentContainer[1].classList.remove('switch-btn-text');
+            switchBtnContainer.classList.remove('switch-btn-left-container-cl');
+            switchBtnContainer.classList.add('switch-btn-right-container-cl');
+        });
+
+        mcsRecentContentContainer[1].addEventListener('click', ()=> {
+            mcsRecentContentContainer[0].classList.remove('switch-btn-text');
+            mcsRecentContentContainer[1].classList.add('switch-btn-text');
+            switchBtnContainer.classList.add('switch-btn-left-container-cl');
+            switchBtnContainer.classList.remove('switch-btn-right-container-cl');
+        });
+
+        switchBtnContainer.addEventListener('click', ()=> {
+            if (switchBtnContainer.classList.contains('switch-btn-right-container-cl')) {
+                switchBtnContainer.classList.add('switch-btn-left-container-cl');
+                switchBtnContainer.classList.remove('switch-btn-right-container-cl');
+                mcsRecentContentContainer[0].classList.remove('switch-btn-text');
+                mcsRecentContentContainer[1].classList.add('switch-btn-text');
+            } else {
+                switchBtnContainer.classList.remove('switch-btn-left-container-cl');
+                switchBtnContainer.classList.add('switch-btn-right-container-cl');
+                mcsRecentContentContainer[0].classList.add('switch-btn-text');
+                mcsRecentContentContainer[1].classList.remove('switch-btn-text');
+            }
         });
     }
 }
 const MBC = new MainBodyContent();
 const MBCClassMethodManager = ()=> {
+    MBC.MainBodyContentCheckScrollMethod();
     MBC.SearchBarLinksMethod();
+    MBC.MainContentTopLinksMethod();
+    MBC.MainContentBottomLinksMethod();
 };
 MBCClassMethodManager();

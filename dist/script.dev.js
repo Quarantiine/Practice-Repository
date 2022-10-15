@@ -63,13 +63,19 @@ var mainBodyContentVar = {
   searchBarLinksContainer: document.querySelector('.search-bar-links-container'),
   searchBarLinks: document.querySelector('.search-bar-links'),
   searchBar: document.querySelector('.search-bar'),
-  sblContainer: document.querySelectorAll('.sbl-container')
+  sblContainer: document.querySelectorAll('.sbl-container'),
+  linkSectionLinks: document.querySelectorAll('.link-section p'),
+  mcsRecentContentContainer: document.querySelectorAll('.mcs-recent-content-container p'),
+  switchBtnContainer: document.querySelector('.switch-btn-container')
 };
 var mainBodyContent = mainBodyContentVar.mainBodyContent,
     searchBarLinks = mainBodyContentVar.searchBarLinks,
     searchBar = mainBodyContentVar.searchBar,
     sblContainer = mainBodyContentVar.sblContainer,
-    searchBarLinksContainer = mainBodyContentVar.searchBarLinksContainer; // ==---
+    searchBarLinksContainer = mainBodyContentVar.searchBarLinksContainer,
+    linkSectionLinks = mainBodyContentVar.linkSectionLinks,
+    mcsRecentContentContainer = mainBodyContentVar.mcsRecentContentContainer,
+    switchBtnContainer = mainBodyContentVar.switchBtnContainer; // ==---
 // ========== Side Navigation Bar Section ===========||
 
 var SideNavigationBar =
@@ -276,19 +282,88 @@ function () {
   }
 
   _createClass(MainBodyContent, [{
+    key: "MainBodyContentCheckScrollMethod",
+    value: function MainBodyContentCheckScrollMethod() {
+      if (mainBodyContent.scrollHeight > 929) {
+        mainBodyContent.classList.add('main-body-content-cl-2');
+      } else {
+        mainBodyContent.classList.remove('main-body-content-cl-2');
+      }
+    }
+  }, {
     key: "SearchBarLinksMethod",
     value: function SearchBarLinksMethod() {
       searchBar.addEventListener('click', function () {
         searchBarLinks.classList.add('search-bar-links-cl');
+        $(searchBarLinksContainer).css({
+          'display': 'flex',
+          'height': '50px',
+          'z-index': '5'
+        });
         $(sblContainer).css({
           'cursor': 'pointer'
         });
       });
       searchBarLinksContainer.addEventListener('mouseleave', function () {
         searchBarLinks.classList.remove('search-bar-links-cl');
+        $(searchBarLinksContainer).css({
+          'height': '0%',
+          'z-index': '-1'
+        });
         $(sblContainer).css({
           'cursor': 'default'
         });
+        setTimeout(function () {
+          $(searchBarLinksContainer).css('display', 'none');
+        }, 200);
+      });
+    }
+  }, {
+    key: "MainContentTopLinksMethod",
+    value: function MainContentTopLinksMethod() {
+      linkSectionLinks[0].addEventListener('click', function (e) {
+        linkSectionLinks[0].classList.add('mcs-links-cl');
+        linkSectionLinks[1].classList.remove('mcs-links-cl');
+        linkSectionLinks[2].classList.remove('mcs-links-cl');
+      });
+      linkSectionLinks[1].addEventListener('click', function (e) {
+        linkSectionLinks[0].classList.remove('mcs-links-cl');
+        linkSectionLinks[1].classList.add('mcs-links-cl');
+        linkSectionLinks[2].classList.remove('mcs-links-cl');
+      });
+      linkSectionLinks[2].addEventListener('click', function (e) {
+        linkSectionLinks[0].classList.remove('mcs-links-cl');
+        linkSectionLinks[1].classList.remove('mcs-links-cl');
+        linkSectionLinks[2].classList.add('mcs-links-cl');
+      });
+    }
+  }, {
+    key: "MainContentBottomLinksMethod",
+    value: function MainContentBottomLinksMethod() {
+      mcsRecentContentContainer[0].addEventListener('click', function () {
+        mcsRecentContentContainer[0].classList.add('switch-btn-text');
+        mcsRecentContentContainer[1].classList.remove('switch-btn-text');
+        switchBtnContainer.classList.remove('switch-btn-left-container-cl');
+        switchBtnContainer.classList.add('switch-btn-right-container-cl');
+      });
+      mcsRecentContentContainer[1].addEventListener('click', function () {
+        mcsRecentContentContainer[0].classList.remove('switch-btn-text');
+        mcsRecentContentContainer[1].classList.add('switch-btn-text');
+        switchBtnContainer.classList.add('switch-btn-left-container-cl');
+        switchBtnContainer.classList.remove('switch-btn-right-container-cl');
+      });
+      switchBtnContainer.addEventListener('click', function () {
+        if (switchBtnContainer.classList.contains('switch-btn-right-container-cl')) {
+          switchBtnContainer.classList.add('switch-btn-left-container-cl');
+          switchBtnContainer.classList.remove('switch-btn-right-container-cl');
+          mcsRecentContentContainer[0].classList.remove('switch-btn-text');
+          mcsRecentContentContainer[1].classList.add('switch-btn-text');
+        } else {
+          switchBtnContainer.classList.remove('switch-btn-left-container-cl');
+          switchBtnContainer.classList.add('switch-btn-right-container-cl');
+          mcsRecentContentContainer[0].classList.add('switch-btn-text');
+          mcsRecentContentContainer[1].classList.remove('switch-btn-text');
+        }
       });
     }
   }]);
@@ -299,7 +374,10 @@ function () {
 var MBC = new MainBodyContent();
 
 var MBCClassMethodManager = function MBCClassMethodManager() {
+  MBC.MainBodyContentCheckScrollMethod();
   MBC.SearchBarLinksMethod();
+  MBC.MainContentTopLinksMethod();
+  MBC.MainContentBottomLinksMethod();
 };
 
 MBCClassMethodManager();
