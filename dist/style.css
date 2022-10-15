@@ -1876,8 +1876,10 @@ body {
   text-align: center;
   width: 35%;
   margin: auto;
+  user-select: none;
 }
 .body-container .main-body-content .main-content-section .inner-content-section .ics-header-text .trending-txt {
+  user-select: none;
   color: #76daff;
   font-size: 23px;
   cursor: pointer;

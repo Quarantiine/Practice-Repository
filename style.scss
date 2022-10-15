@@ -2237,8 +2237,10 @@ body {
 					text-align: center;
 					width: 35%;
 					margin: auto;
+					user-select: none;
 
 					.trending-txt {
+						user-select: none;
 						color: #76daff;
 						font-size: 23px;
 						cursor: pointer;
