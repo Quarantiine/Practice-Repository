@@ -1866,6 +1866,7 @@ body {
   margin-left: 0px;
 }
 .body-container .main-body-content .main-content-section .inner-content-section {
+  user-select: none;
   width: 95%;
   margin: auto;
 }
